@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>my_app</title>
+</head>
+<body>
+    <div>
+        <h1>{{title}}</h1>
+        {% for item in values %}
+        {% if "My" in title %}
+        <ol>producto: {{item.producto}}, cantidad: {{item.cantidad}}, tipo de orden: {{item.tipo}}, Fecha: {{item.created_on}}</ol>
+        {% elif "All" in title %}
+        <ol>usuario(id): {{item.user_id}}, producto: {{item.producto}}, cantidad: {{item.cantidad}}, tipo de orden: {{item.tipo}}, Fecha: {{item.created_on}}</ol>
+        {% else %}
+        <ol>{{item.username}}, email: {{item.email}}, psw: {{item.password}}</ol>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a href="{{ url_for("index") }}">pantalla principal</a><br>
+</body>
+</html>

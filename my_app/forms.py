@@ -1,16 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from my_app.models import User
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators = [DataRequired(),
-                            Length(min = 2, max = 20)])
+    username = StringField('Username', validators = [DataRequired()])
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired()])
     confirm_password =PasswordField('Confirm Password',
                             validators = [DataRequired(), EqualTo('password')])
-    register = SubmitField('Sign Up')
+    register = SubmitField('Registrarse')
 
     def validate_username(self, username):
         user = User.query.filter_by(username = username.data).first()
@@ -24,7 +23,12 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators = [DataRequired(), Email()])
+    username = StringField('Username', validators = [DataRequired()])
     password = PasswordField('Password', validators = [DataRequired()])
-    remember = BooleanField('Remember me')
     login = SubmitField('Log In')
+
+class OrderForm(FlaskForm):
+    producto = StringField('Producto', validators = [DataRequired()])
+    cantidad = StringField('Cantidad', validators = [DataRequired()])
+    tipo = SelectField("Tipo", choices=["Compra", "Venta"])
+    generate = SubmitField("Generar orden")

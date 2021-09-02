@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>my_app</title>
+  </head>
+  <body>
+    <div>
+      <h1>index page</h1>
+      {% if current_user.is_authenticated %}
+      Hi {{current_user.username}}!
+      {% else %}
+      Hi random!
+      {% endif %}
+    </div>
+    <a href="{{ url_for("usuarios") }}">lista de usuarios</a><br>
+    <a href="{{ url_for("solicitudes") }}">ver mis ordenes</a><br>
+    <a href="{{ url_for("solicitudes_all") }}">ver todas las ordenes</a><br>
+    <a href="{{ url_for("crear_orden") }}">nueva orden</a><br>
+    <a href="{{ url_for("logout") }}">cerrar sesion</a>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>my_app</title>
+  </head>
+  <body>
+    <div>
+      <h1>Nueva orden de compra/venta</h1>
+      <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div>
+          {{ form.producto.label }}
+          {{ form.producto }}<br>
+          {% for error in form.producto.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        <div>
+          {{ form.cantidad.label }}
+          {{ form.cantidad }}<br>
+          {% for error in form.cantidad.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        <div>
+            {{ form.tipo.label }}
+            {{ form.tipo }}<br>
+            {% for error in form.tipo.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        <div>
+        {{ form.generate() }}
+        </div>
+      </form>
+      <a href="{{ url_for("index") }}">Pagina principal</a>
+    </div>
+  </body>
+</html>
